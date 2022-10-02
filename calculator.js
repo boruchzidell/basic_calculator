@@ -1,36 +1,24 @@
-document.addEventListener('DOMContentLoaded', function (e) {
+document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    let first = document.querySelector('#first_operand').value;
-    let second = document.querySelector('#second_operand').value;
-    let operation = document.querySelector('#operation').value;
-    let output = document.querySelector('#output');
+    let getValueOf = (selector) => document.querySelector(selector).value;
+
+    let first = +getValueOf('#first_operand');
+    let second = +getValueOf('#second_operand');
+    let operation = getValueOf('#operation');
 
     let operations = {
-      '+': (a, b) => +a + +b,
-      '-': (a, b) => +a - +b,
-      '*': (a, b) => +a * +b,
-      '/': (a, b) => +a / +b,
+      '+': (a, b) => a + b,
+      '-': (a, b) => a - b,
+      '*': (a, b) => a * b,
+      '/': (a, b) => a / b,
     };
 
-    let result;
+    let mathFunction = operations[operation];
 
-    switch (operation) {
-      case '+':
-        result = operations['+'](first, second);
-        break;
-      case '-':
-        result = operations['-'](first, second);
-        break;
-      case '*':
-        result = operations['*'](first, second);
-        break;
-      case '/':
-        result = operations['/'](first, second);
-        break;
-    }
+    let result = mathFunction(first, second);
 
-    output.textContent = result;
+    document.querySelector('#output').textContent = result;
   });
 });
