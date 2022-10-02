@@ -10,5 +10,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     let result = eval(first + operation + second);
 
     output.textContent = result;
+
+    test;
   });
 });
