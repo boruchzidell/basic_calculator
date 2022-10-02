@@ -7,10 +7,30 @@ document.addEventListener('DOMContentLoaded', function (e) {
     let operation = document.querySelector('#operation').value;
     let output = document.querySelector('#output');
 
-    let result = eval(first + operation + second);
+    let operations = {
+      '+': (a, b) => +a + +b,
+      '-': (a, b) => +a - +b,
+      '*': (a, b) => +a * +b,
+      '/': (a, b) => +a / +b,
+    };
+
+    let result;
+
+    switch (operation) {
+      case '+':
+        result = operations['+'](first, second);
+        break;
+      case '-':
+        result = operations['-'](first, second);
+        break;
+      case '*':
+        result = operations['*'](first, second);
+        break;
+      case '/':
+        result = operations['/'](first, second);
+        break;
+    }
 
     output.textContent = result;
-
-    test;
   });
 });
